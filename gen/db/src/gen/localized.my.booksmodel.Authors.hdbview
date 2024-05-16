@@ -1,0 +1,16 @@
+VIEW localized_my_booksmodel_Authors AS SELECT
+  L.createdAt,
+  L.createdBy,
+  L.modifiedAt,
+  L.modifiedBy,
+  L.ID,
+  L.name,
+  L.dateOfBirth,
+  L.dateOfDeath,
+  L.placeOfBirth,
+  L.placeOfDeath,
+  L.books_ID
+FROM my_booksmodel_Authors AS L
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_my_booksmodel_Books AS books ON (books.ID = books_ID)
+)

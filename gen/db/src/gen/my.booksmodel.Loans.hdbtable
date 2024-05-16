@@ -1,0 +1,16 @@
+COLUMN TABLE my_booksmodel_Loans (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  customerfirstName_ID NVARCHAR(36),
+  customerlastName_ID NVARCHAR(36),
+  amount INTEGER,
+  currency_code NVARCHAR(3),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN my_booksmodel_Customers AS customerfirstName ON (customerfirstName.ID = customerfirstName_ID),
+  MANY TO ONE JOIN my_booksmodel_Customers AS customerlastName ON (customerlastName.ID = customerlastName_ID),
+  MANY TO ONE JOIN sap_common_Currencies AS currency ON (currency.code = currency_code)
+)

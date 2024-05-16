@@ -1,0 +1,13 @@
+COLUMN TABLE my_booksmodel_Bankers (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  zipcode INTEGER,
+  bankName NVARCHAR(143),
+  currency_code NVARCHAR(3),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_common_Currencies AS currency ON (currency.code = currency_code)
+)

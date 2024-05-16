@@ -1,0 +1,13 @@
+VIEW localized_my_booksmodel_Bankers AS SELECT
+  L.createdAt,
+  L.createdBy,
+  L.modifiedAt,
+  L.modifiedBy,
+  L.ID,
+  L.zipcode,
+  L.bankName,
+  L.currency_code
+FROM my_booksmodel_Bankers AS L
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_sap_common_Currencies AS currency ON (currency.code = currency_code)
+)

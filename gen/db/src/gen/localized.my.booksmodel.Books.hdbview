@@ -1,0 +1,25 @@
+VIEW localized_my_booksmodel_Books AS SELECT
+  L_0.createdAt,
+  L_0.createdBy,
+  L_0.modifiedAt,
+  L_0.modifiedBy,
+  L_0.ID,
+  coalesce(localized_1.title, L_0.title) AS title,
+  coalesce(localized_1.descr, L_0.descr) AS descr,
+  L_0.author_ID,
+  L_0.loan_ID,
+  L_0.banker_ID,
+  L_0.customer_ID,
+  L_0.stock,
+  L_0.price,
+  L_0.currency_code
+FROM (my_booksmodel_Books AS L_0 LEFT JOIN my_booksmodel_Books_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = SESSION_CONTEXT('LOCALE'))
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_my_booksmodel_Authors AS author ON (author.ID = author_ID),
+  MANY TO ONE JOIN localized_my_booksmodel_Loans AS loan ON (loan.ID = loan_ID),
+  MANY TO ONE JOIN localized_my_booksmodel_Bankers AS banker ON (banker.ID = banker_ID),
+  MANY TO ONE JOIN localized_my_booksmodel_Customers AS customer ON (customer.ID = customer_ID),
+  MANY TO ONE JOIN localized_sap_common_Currencies AS currency ON (currency.code = currency_code),
+  MANY TO MANY JOIN my_booksmodel_Books_texts AS texts ON (texts.ID = ID),
+  MANY TO ONE JOIN my_booksmodel_Books_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
+)

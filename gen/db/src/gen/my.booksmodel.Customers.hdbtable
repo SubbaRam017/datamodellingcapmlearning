@@ -1,0 +1,24 @@
+COLUMN TABLE my_booksmodel_Customers (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID NVARCHAR(36) NOT NULL,
+  nameFirst NVARCHAR(40),
+  nameMiddle NVARCHAR(40),
+  nameLast NVARCHAR(40),
+  nameInitials NVARCHAR(40),
+  gender NVARCHAR(1),
+  "LANGUAGE" NVARCHAR(1),
+  phoneNumber NVARCHAR(40),
+  email NVARCHAR(353),
+  loginName NVARCHAR(12),
+  Currency_code NVARCHAR(3),
+  salaryAmount DECIMAL(17, 5),
+  accountNumber NVARCHAR(16),
+  bankId NVARCHAR(20),
+  bankName NVARCHAR(64),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_common_Currencies AS Currency ON (Currency.code = Currency_code)
+)

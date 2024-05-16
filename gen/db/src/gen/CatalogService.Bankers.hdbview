@@ -1,0 +1,13 @@
+VIEW CatalogService_Bankers AS SELECT
+  Bankers_0.createdAt,
+  Bankers_0.createdBy,
+  Bankers_0.modifiedAt,
+  Bankers_0.modifiedBy,
+  Bankers_0.ID,
+  Bankers_0.zipcode,
+  Bankers_0.bankName,
+  Bankers_0.currency_code
+FROM my_booksmodel_Bankers AS Bankers_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CatalogService_Currencies AS currency ON (currency.code = currency_code)
+)

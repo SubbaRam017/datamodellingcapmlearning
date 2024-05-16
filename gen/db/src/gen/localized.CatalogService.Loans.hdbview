@@ -1,0 +1,16 @@
+VIEW localized_CatalogService_Loans AS SELECT
+  Loans_0.createdAt,
+  Loans_0.createdBy,
+  Loans_0.modifiedAt,
+  Loans_0.modifiedBy,
+  Loans_0.ID,
+  Loans_0.customerfirstName_ID,
+  Loans_0.customerlastName_ID,
+  Loans_0.amount,
+  Loans_0.currency_code
+FROM localized_my_booksmodel_Loans AS Loans_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_CatalogService_Customers AS customerfirstName ON (customerfirstName.ID = customerfirstName_ID),
+  MANY TO ONE JOIN localized_CatalogService_Customers AS customerlastName ON (customerlastName.ID = customerlastName_ID),
+  MANY TO ONE JOIN localized_CatalogService_Currencies AS currency ON (currency.code = currency_code)
+)

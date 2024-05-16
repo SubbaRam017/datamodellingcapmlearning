@@ -1,0 +1,25 @@
+VIEW localized_CatalogService_Books AS SELECT
+  Books_0.createdAt,
+  Books_0.createdBy,
+  Books_0.modifiedAt,
+  Books_0.modifiedBy,
+  Books_0.ID,
+  Books_0.title,
+  Books_0.descr,
+  Books_0.author_ID,
+  Books_0.loan_ID,
+  Books_0.banker_ID,
+  Books_0.customer_ID,
+  Books_0.stock,
+  Books_0.price,
+  Books_0.currency_code
+FROM localized_my_booksmodel_Books AS Books_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_CatalogService_Authors AS author ON (author.ID = author_ID),
+  MANY TO ONE JOIN localized_CatalogService_Loans AS loan ON (loan.ID = loan_ID),
+  MANY TO ONE JOIN localized_CatalogService_Bankers AS banker ON (banker.ID = banker_ID),
+  MANY TO ONE JOIN localized_CatalogService_Customers AS customer ON (customer.ID = customer_ID),
+  MANY TO ONE JOIN localized_CatalogService_Currencies AS currency ON (currency.code = currency_code),
+  MANY TO MANY JOIN CatalogService_Books_texts AS texts ON (texts.ID = ID),
+  MANY TO ONE JOIN CatalogService_Books_texts AS localized ON (localized.ID = ID AND localized.locale = SESSION_CONTEXT('LOCALE'))
+)

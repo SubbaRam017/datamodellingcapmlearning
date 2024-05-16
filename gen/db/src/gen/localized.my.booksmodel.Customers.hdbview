@@ -1,0 +1,24 @@
+VIEW localized_my_booksmodel_Customers AS SELECT
+  L.createdAt,
+  L.createdBy,
+  L.modifiedAt,
+  L.modifiedBy,
+  L.ID,
+  L.nameFirst,
+  L.nameMiddle,
+  L.nameLast,
+  L.nameInitials,
+  L.gender,
+  L."LANGUAGE",
+  L.phoneNumber,
+  L.email,
+  L.loginName,
+  L.Currency_code,
+  L.salaryAmount,
+  L.accountNumber,
+  L.bankId,
+  L.bankName
+FROM my_booksmodel_Customers AS L
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN localized_sap_common_Currencies AS Currency ON (Currency.code = Currency_code)
+)

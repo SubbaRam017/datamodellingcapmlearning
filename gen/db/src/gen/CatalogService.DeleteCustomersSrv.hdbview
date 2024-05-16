@@ -1,0 +1,24 @@
+VIEW CatalogService_DeleteCustomersSrv AS SELECT
+  Customers_0.createdAt,
+  Customers_0.createdBy,
+  Customers_0.modifiedAt,
+  Customers_0.modifiedBy,
+  Customers_0.ID,
+  Customers_0.nameFirst,
+  Customers_0.nameMiddle,
+  Customers_0.nameLast,
+  Customers_0.nameInitials,
+  Customers_0.gender,
+  Customers_0."LANGUAGE",
+  Customers_0.phoneNumber,
+  Customers_0.email,
+  Customers_0.loginName,
+  Customers_0.Currency_code,
+  Customers_0.salaryAmount,
+  Customers_0.accountNumber,
+  Customers_0.bankId,
+  Customers_0.bankName
+FROM my_booksmodel_Customers AS Customers_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CatalogService_Currencies AS Currency ON (Currency.code = Currency_code)
+)
